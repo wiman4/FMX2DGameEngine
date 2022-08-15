@@ -1,0 +1,135 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'xyClient'
+  ClientHeight = 900
+  ClientWidth = 1600
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
+  OnKeyUp = FormKeyUp
+  OnMouseDown = FormMouseDown
+  OnMouseMove = FormMouseMove
+  OnMouseUp = FormMouseUp
+  OnPaint = FormPaint
+  OnShow = FormShow
+  Touch.InteractiveGestures = [LongTap, DoubleTap]
+  OnGesture = FormGesture
+  DesignerMasterStyle = 0
+  object btnTest: TButton
+    Position.X = 1018.000000000000000000
+    Position.Y = 658.000000000000000000
+    TabOrder = 1
+    Text = 'btn&Test'
+    OnClick = btnTestClick
+    object btnStressTest: TButton
+      Position.Y = 62.000000000000000000
+      TabOrder = 6
+      Text = 'btn&StressTest'
+      OnClick = btnStressTestClick
+    end
+    object btnTest2: TButton
+      Position.Y = 32.000000000000000000
+      TabOrder = 7
+      Text = 'btnTest&2'
+      OnClick = btnTest2Click
+    end
+    object btnPlayStop: TButton
+      Position.Y = 92.000000000000000000
+      TabOrder = 8
+      Text = 'btn&PlayStop'
+      OnClick = btnPlayStopClick
+    end
+    object cbbState: TComboBox
+      Items.Strings = (
+        'osStand, '
+        'osWalk, '
+        'osGuard, '
+        'osAtk, '
+        'osDefence, '
+        'osHit, '
+        'osMagic, '
+        'osDie')
+      Position.Y = 151.000000000000000000
+      Size.Width = 136.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 9
+      OnChange = cbbStateChange
+    end
+    object edtFileName: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 3
+      Position.Y = 214.000000000000000000
+      Size.Width = 137.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnKeyUp = edtFileNameKeyUp
+    end
+    object edtFrameCount: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      TabOrder = 10
+      Text = '8'
+      Position.X = 96.000000000000000000
+      Position.Y = 252.000000000000000000
+      Size.Width = 40.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lblFileName: TLabel
+      Position.X = 8.000000000000000000
+      Position.Y = 189.000000000000000000
+      Size.Width = 136.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'lblFileName'
+      TabOrder = 5
+    end
+    object lblFrameCount: TLabel
+      Position.X = -1.000000000000000000
+      Position.Y = 253.000000000000000000
+      Size.Width = 89.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'lblFrameCount'
+      TabOrder = 11
+    end
+    object btnDrawAniBmp: TButton
+      Position.Y = 122.000000000000000000
+      TabOrder = 2
+      Text = 'btn&DrawAniBmp'
+      OnClick = btnDrawAniBmpClick
+    end
+    object cbbCharState: TComboBox
+      Items.Strings = (
+        'csNormal'
+        'csDemo')
+      Position.Y = 175.000000000000000000
+      Size.Width = 136.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      OnChange = cbbCharStateChange
+    end
+  end
+  object edtUI: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    Text = '12333'
+    TextSettings.Font.Size = 9.000000000000000000
+    Position.X = 48.000000000000000000
+    Position.Y = 488.000000000000000000
+    Size.Width = 200.000000000000000000
+    Size.Height = 80.000000000000000000
+    Size.PlatformDefault = False
+    StyledSettings = [Family, Style, FontColor]
+    Visible = False
+  end
+  object tmrMain: TTimer
+    Interval = 50
+    OnTimer = tmrMainTimer
+    Left = 784
+    Top = 440
+  end
+end
