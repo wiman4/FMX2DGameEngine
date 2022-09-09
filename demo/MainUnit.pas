@@ -47,12 +47,16 @@ type
     procedure FormGesture(Sender: TObject; const EventInfo: TGestureEventInfo;
       var Handled: Boolean);
     procedure tmrMainTimer(Sender: TObject);
+    procedure FormResize(Sender: TObject);
 
   private    { Private declarations }
+    FOffSet: TPointF;
     procedure paintUI(Sender: TObject);
   protected
 //    procedure PaintRects(const UpdateRects: array of TRectF); override;
   public    { Public declarations }
+    FDrawScale: Single;
+
     procedure OnGridClick(sender: TObject; gridIndex: Integer);
     procedure tvMarketClickItem(sender: TObject);
     procedure showMsg(s: string);
@@ -652,6 +656,8 @@ var
   d, ideg: Integer;
 
 begin
+  x := (X - FOffSet.X) / FDrawScale;
+  y := (Y - FOffSet.Y) / FDrawScale;
   gameUI.uiMouseDown(Button, Shift, X, Y);
 
   x0 := Width / 2;
@@ -679,18 +685,42 @@ end;
 procedure TForm1.FormMouseMove(Sender: TObject; Shift: TShiftState; X,
   Y: Single);
 begin
+  x := (X - FOffSet.X) / FDrawScale;
+  y := (Y - FOffSet.Y) / FDrawScale;
   gameUI.uiMouseMove(shift, X, Y);
 end;
 
 procedure TForm1.FormMouseUp(Sender: TObject; Button: TMouseButton;
   Shift: TShiftState; X, Y: Single);
 begin
+  x := (X - FOffSet.X) / FDrawScale;
+  y := (Y - FOffSet.Y) / FDrawScale;
   gameUI.uiMouseUp(Button, Shift, X, Y);
 end;
 
 procedure TForm1.FormPaint(Sender: TObject; Canvas: TCanvas; const ARect: TRectF);
 begin
 //  btnTestClick(nil);
+end;
+
+procedure TForm1.FormResize(Sender: TObject);
+var
+  kx, ky: Single;
+begin
+  kx := ClientRect.Width / ScreenWidth;
+  ky := ClientRect.Height / ScreenHeight;
+  if kx <= ky then
+  begin
+    FOffSet := TPointF.Create(0, ClientRect.Height * (1 - kx / ky) / 2);
+    TGameAnimation.Matrix := TMatrix.CreateScaling(kx, kx) * TMatrix.CreateTranslation(FOffSet.X, FOffSet.Y);
+    FDrawScale := kx;
+  end
+  else
+  begin
+    FOffSet := TPointF.Create(ClientRect.Width * (1 - ky / kx) / 2, 0);
+    TGameAnimation.Matrix := TMatrix.CreateScaling(ky, ky) * TMatrix.CreateTranslation(FOffSet.X, FOffSet.Y);
+    FDrawScale := ky;
+  end;
 end;
 
 procedure TForm1.FormShow(Sender: TObject);

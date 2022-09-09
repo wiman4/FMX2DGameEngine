@@ -13,6 +13,7 @@ object Form1: TForm1
   OnMouseDown = FormMouseDown
   OnMouseMove = FormMouseMove
   OnMouseUp = FormMouseUp
+  OnResize = FormResize
   OnPaint = FormPaint
   OnShow = FormShow
   Touch.InteractiveGestures = [LongTap, DoubleTap]
